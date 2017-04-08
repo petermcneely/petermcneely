@@ -7,9 +7,17 @@
             });
 
         $stateProvider
-            .state('home', {
+            .state('blog', {
                 url: '/',
                 template: '<home></home>'
+            })
+            .state('about', {
+                url: '/about',
+                template: '<about></about>'
+            })
+            .state('resume', {
+                url: '/resume',
+                template: '<resume></resume>'
             });
     };
 

@@ -1,0 +1,21 @@
+body {
+    padding-top: 60px;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-nav li:hover {
+    background-color: rgb(180, 196, 208);
+}
+
+.navbar-default .navbar-toggle:active,
+.navbar-default .navbar-nav li:active {
+    background-color: rgb(18, 91, 143);
+}
+
+.navbar-default .navbar-toggle:active .icon-bar {
+    background-color: white;
+}
+
+.nav.navbar-nav li:active a {
+    color: white;
+}
