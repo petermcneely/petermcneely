@@ -1,0 +1,33 @@
+{
+  "name": "petermcneely",
+  "version": "0.0.1",
+  "description": "Peter McNeely's Personal Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petermcneely/petermcneely.git"
+  },
+  "author": "Peter McNeely",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/petermcneely/petermcneely/issues"
+  },
+  "homepage": "https://github.com/petermcneely/petermcneely#readme",
+  "dependencies": {
+    "path": "^0.12.7",
+    "hapi": "^16.1.1",
+    "inert": "^4.2.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-hapi": "^0.12.0"
+  }
+}
