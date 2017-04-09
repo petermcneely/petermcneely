@@ -1,5 +1,16 @@
 body {
     padding-top: 60px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#profile {
+    height: 150px;
+    width: calc(150px * .75);
+    margin-bottom: 20px;
+}
+
+#resume {
+    min-width: 570px;
 }
 
 .navbar-default .navbar-toggle:hover,
@@ -18,4 +29,17 @@ body {
 
 .nav.navbar-nav li:active a {
     color: white;
+}
+
+.about-content {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.post {
+    background-color: rgba(146, 177, 199, 0.5);
+    border-radius: 5px;
+    padding: 2px 10px 5px 10px;
+    margin: 5px 0px 5px 0px;
 }

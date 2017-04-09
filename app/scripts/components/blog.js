@@ -1,9 +1,10 @@
 (function () {
     var blog = {
         templateUrl: '../templates/blog.html',
-        controller: function () {
+        controller: ['PostService', function (PostService) {
             var self = this;
-        }
+            self.posts = PostService.posts;
+        }]
     };
 
     angular

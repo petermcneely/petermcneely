@@ -1,1 +1,14 @@
-about.
+<div class="container">
+    <h2>about.</h2>
+    <div class="about-content">
+        <img id="profile" class="img-thumbnail" src="../assets/Profile.jpg" />
+        <p>I'm Peter McNeely and this is my website.</p>
+        <p>I like learning, cooking, woodworking, and staying active.</p>
+        <p>I'm a vice president of software development at <a target="_blank" href="{{$ctrl.job.site}}">{{$ctrl.job.name}}</a>.</p>
+        <p>Currently, my favorite programming language is {{$ctrl.favorite.language}}, I'm really loving {{$ctrl.favorite.framework}}, and I think working with {{$ctrl.favorite.tool}} is pretty cool.</p>
+        <p>When I'm not at a computer, you can probably catch me running in {{$ctrl.favorite.placeToRun}}.</p>
+    </div>
+    <div class="footer text-center">
+        <a target="_blank" href="https://www.linkedin.com/in/pete-mcneely"><span class="fa fa-linkedin-square fa-3x"></span></a>
+    </div>
+</div>

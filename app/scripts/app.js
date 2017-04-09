@@ -9,7 +9,7 @@
         $stateProvider
             .state('blog', {
                 url: '/',
-                template: '<home></home>'
+                template: '<blog></blog>'
             })
             .state('about', {
                 url: '/about',
@@ -18,6 +18,10 @@
             .state('resume', {
                 url: '/resume',
                 template: '<resume></resume>'
+            })
+            .state('postCreate', {
+                url: '/post/create',
+                template: '<post-create></post-create>'
             });
     };
 
