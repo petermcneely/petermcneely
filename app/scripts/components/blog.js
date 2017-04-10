@@ -1,9 +1,20 @@
 (function () {
     var blog = {
         templateUrl: '../templates/blog.html',
-        controller: ['PostService', function (PostService) {
+        controller: ['PostService', '$scope', function (PostService, $scope) {
             var self = this;
-            self.posts = PostService.posts;
+            self.posts = undefined;
+
+            var getPosts = function () {
+                PostService.getPosts().then(function (posts) {
+                    self.posts = posts.val();
+                    $scope.$apply();
+                });
+            };
+
+            self.$onInit = function () {
+                getPosts();
+            };
         }]
     };
 

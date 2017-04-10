@@ -5,7 +5,8 @@
             var self = this;
         },
         bindings: {
-            post: '<'
+            post: '<',
+            showBody: '<'
         }
     };
 

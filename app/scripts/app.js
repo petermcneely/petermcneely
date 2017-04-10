@@ -26,7 +26,7 @@
     };
 
     angular
-        .module('site', ['ui.router'])
+        .module('site', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'firebase'])
         .config(config);
         
 })();

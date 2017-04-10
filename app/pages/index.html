@@ -15,10 +15,27 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-animate.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyD8btUl-vf-TQ5na5-nwEy4TAyNJNrDRBo",
+        authDomain: "petermcneely-4125a.firebaseapp.com",
+        databaseURL: "https://petermcneely-4125a.firebaseio.com",
+        projectId: "petermcneely-4125a",
+        storageBucket: "petermcneely-4125a.appspot.com",
+        messagingSenderId: "672771660775"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="../scripts/app.js"></script>
     <script src="../scripts/components/blog.js"></script>
     <script src="../scripts/components/post.js"></script>
     <script src="../scripts/components/post.create.js"></script>
+    <script src="../scripts/components/signIn.js"></script>
     <script src="../scripts/components/navBar.js"></script>
     <script src="../scripts/components/about.js"></script>
     <script src="../scripts/components/resume.js"></script>

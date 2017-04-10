@@ -1,6 +1,6 @@
 <div class="container">
     <h2>blog.</h2>
     <div class="container-fluid">
-        <post ng-repeat="post in $ctrl.posts" post="post"></post>
+        <post ng-repeat="post in $ctrl.posts" post="post" show-body="$index === 0"></post>
     </div>
 </div>
