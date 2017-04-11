@@ -29,6 +29,6 @@
     };
 
     angular
-        .module('site', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'firebase'])
+        .module('site', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'firebase', 'ngSanitize'])
         .config(config);
 })();

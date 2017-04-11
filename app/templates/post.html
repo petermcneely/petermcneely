@@ -2,6 +2,6 @@
     <h3>{{$ctrl.post.title}}<span ng-click="$ctrl.showBody=!$ctrl.showBody" ng-animate="{enter: 'rotate', leave: 'rotate-back'}" ng-class="{true:'rotate', false:'rotate-back'}[$ctrl.showBody]" class="pull-right fa fa-chevron-right"></span></h3>
     <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
     <div ng-show="$ctrl.showBody" class="post-body">
-        {{$ctrl.post.body}}
+        <div ng-bind-html="$ctrl.post.body"></div>
     </div>
 </div>
