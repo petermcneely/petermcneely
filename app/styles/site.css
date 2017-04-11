@@ -44,6 +44,10 @@ body {
     margin: 5px 0px 5px 0px;
 }
 
+.jumbotron {
+    background-color: rgba(146, 177, 199, 0.15);
+}
+
 .fa-chevron-right {
     cursor: pointer;
 }
