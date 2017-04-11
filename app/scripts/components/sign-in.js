@@ -1,6 +1,6 @@
 ﻿(function () {
     var signIn = {
-        templateUrl: '../templates/signIn.html',
+        templateUrl: '../templates/sign-in.html',
         bindings: {
             modalInstance: '<'
         },
