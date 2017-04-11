@@ -1,10 +1,13 @@
 (function () {
-    function config($stateProvider, $locationProvider) {
+    function config($stateProvider, $locationProvider, $urlRouterProvider) {
         $locationProvider
             .html5Mode({
                 enabled: true,
                 requireBase: false
             });
+
+        $urlRouterProvider
+            .otherwise('/');
 
         $stateProvider
             .state('blog', {
@@ -19,14 +22,13 @@
                 url: '/resume',
                 template: '<resume></resume>'
             })
-            .state('postCreate', {
-                url: '/post/create',
-                template: '<post-create></post-create>'
+            .state('post', {
+                url: '/post',
+                template: '<post-form></post-form>'
             });
     };
 
     angular
         .module('site', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'firebase'])
         .config(config);
-        
 })();

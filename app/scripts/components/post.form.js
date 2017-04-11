@@ -1,6 +1,6 @@
 (function () {
-    var postCreate = {
-        templateUrl: '../templates/post.create.html',
+    var postForm = {
+        templateUrl: '../templates/post.form.html',
         controller: ['PostService', '$uibModal', function (PostService, $uibModal) {
             var self = this;
             self.post = {};
@@ -37,5 +37,5 @@
 
     angular
         .module('site')
-        .component('postCreate', postCreate);
+        .component('postForm', postForm);
 })();

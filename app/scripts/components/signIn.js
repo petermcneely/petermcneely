@@ -24,6 +24,10 @@
                     }
                 );
             };
+
+            self.cancel = function () {
+                self.modalInstance.dismiss('User canceled post attempt.');
+            };
         }
     };
 

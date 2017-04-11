@@ -1,6 +1,6 @@
 (function () {
     var navBar = {
-        templateUrl: '../templates/navBar.html',
+        templateUrl: '../templates/navbar.html',
         controller: function () {
             var self = this;
             self.switch = false;
