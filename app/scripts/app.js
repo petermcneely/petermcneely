@@ -1,4 +1,5 @@
 (function () {
+    'use strict'
     function config($stateProvider, $locationProvider, $urlRouterProvider) {
         $locationProvider
             .html5Mode({
@@ -25,6 +26,10 @@
             .state('post', {
                 url: '/post',
                 template: '<post-form></post-form>'
+            })
+            .state('commentedPost', {
+                url: '/post/{title}',
+                template: '<commented-post></commented-post>'
             });
     };
 

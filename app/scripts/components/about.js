@@ -1,4 +1,5 @@
 (function () {
+    'use strict'
     var about = {
         templateUrl: '../templates/about.html',
         controller: function () {

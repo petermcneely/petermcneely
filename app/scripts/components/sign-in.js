@@ -1,4 +1,5 @@
 ﻿(function () {
+    'use strict'
     var signIn = {
         templateUrl: '../templates/sign-in.html',
         bindings: {

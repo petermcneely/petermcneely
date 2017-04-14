@@ -70,3 +70,8 @@ body {
 .post-body {
     margin: 10px;
 }
+
+.post .post-header a {
+    text-decoration: none;
+    cursor: pointer;
+}

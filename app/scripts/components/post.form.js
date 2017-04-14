@@ -1,7 +1,8 @@
 (function () {
+    'use strict'
     var postForm = {
         templateUrl: '../templates/post.form.html',
-        controller: ['PostService', '$uibModal', function (PostService, $uibModal) {
+        controller: ['PostFactory', '$uibModal', '$filter', function (PostFactory, $uibModal, $filter) {
             var self = this;
             self.post = {};
 
@@ -22,7 +23,8 @@
 
             var submitPost = function () {
                 self.post.creationDate = new Date().toDateString();
-                PostService.createPost(self.post).then(
+                self.post.urlTitle = $filter('hyphenate')(self.post.title);
+                PostFactory.createPost(self.post).then(
                     function (success) {
                         console.log("Post successfully created.");
                         self.post = {};

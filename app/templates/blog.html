@@ -1,6 +1,9 @@
 <div class="container">
     <h2>blog.</h2>
-    <div class="container-fluid">
+    <div ng-if="!$ctrl.loading" class="container-fluid">
         <post ng-repeat="post in $ctrl.posts | orderBy: '-creationTime'" post="post" show-body="$index === 0"></post>
+    </div>
+    <div class="text-center" ng-if="$ctrl.loading">
+        <span class="fa fa-refresh fa-spin fa-4x"></span>
     </div>
 </div>

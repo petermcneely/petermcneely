@@ -1,4 +1,5 @@
 (function () {
+    'use strict'
     var navBar = {
         templateUrl: '../templates/navbar.html',
         controller: function () {

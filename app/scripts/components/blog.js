@@ -1,19 +1,28 @@
 (function () {
+    'use strict'
     var blog = {
         templateUrl: '../templates/blog.html',
-        controller: ['PostService', '$scope', function (PostService, $scope) {
+        controller: ['PostFactory', '$scope', function (PostFactory, $scope) {
             var self = this;
             self.posts = undefined;
+            self.loading = true;
 
             var getPosts = function () {
-                PostService.getPosts().then(function (posts) {
-                    var postsObj = posts.val();
-                    self.posts = postsObj ? Object.keys(postsObj).map(function (key) {
-                        postsObj[key].creationTime = Date.parse(postsObj[key].creationDate);
-                        return postsObj[key];
-                    }) : null;
-                    $scope.$apply();
-                });
+                PostFactory.getPosts().then(
+                    function (posts) {
+                        var postsObj = posts.val();
+                        self.posts = postsObj ? Object.keys(postsObj).map(function (key) {
+                            postsObj[key].creationTime = Date.parse(postsObj[key].creationDate);
+                            return postsObj[key];
+                        }) : null;
+                        self.loading = false;
+                        $scope.$apply();
+                    },
+                    function (error) {
+                        console.log(error);
+                        self.loading = false;
+                    }
+                );
             };
 
             self.$onInit = function () {

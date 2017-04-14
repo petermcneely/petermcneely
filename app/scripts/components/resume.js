@@ -1,4 +1,5 @@
 (function () {
+    'use strict'
     var resume = {
         templateUrl: '../templates/resume.html',
         controller: function () {
