@@ -13,6 +13,7 @@
                         var postsObj = posts.val();
                         self.posts = postsObj ? Object.keys(postsObj).map(function (key) {
                             postsObj[key].creationTime = Date.parse(postsObj[key].creationDate);
+                            postsObj[key].id = key;
                             return postsObj[key];
                         }) : null;
                         self.loading = false;

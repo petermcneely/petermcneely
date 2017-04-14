@@ -15,6 +15,8 @@
                             if (success.val() !== null) {
                                 for (var singleKey in success.val()) {
                                     self.post = success.val()[singleKey];
+                                    self.post.id = singleKey;
+                                    getComments();
                                     break;
                                 }
                             }
@@ -37,7 +39,12 @@
                 CommentFactory.getComments(self.post.id).then(
                     function (success) {
                         if (typeof success.val === "function") {
-                            self.post.comments = success.val();
+                            var commentsObj = success.val();
+                            self.post.comments = commentsObj ? Object.keys(commentsObj).map(function (key) {
+                                commentsObj[key].id = key;
+                                return commentsObj[key];
+                            }) : null;
+                            $scope.$apply();
                         }
                     },
                     function (error) {
@@ -45,6 +52,7 @@
                     }
                 );
             };
+            
 
             self.$onInit = function () {
                 getPost();

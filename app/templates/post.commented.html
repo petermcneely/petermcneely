@@ -5,13 +5,16 @@
         <div class="post-body">
             <div ng-bind-html="$ctrl.post.body"></div>
         </div>
-        <div class="comments" ng-repeat="comment in $ctrl.post.comments"></div><!-- TODO: only load a few comments -->
-        <!-- TODO: have the comment form here. -->
     </div>
-    <div ng-if="!$ctrl.hasPost && !$ctrl.loading">
-        <p>A post with that title doesn't exist!</p>
-    </div>
-    <div class="text-center" ng-if="$ctrl.loading">
-        <span class="fa fa-refresh fa-spin fa-4x"></span>
-    </div>
+</div>
+<div class="container">
+    <!-- TODO: only load a few comments -->
+    <comment ng-repeat="comment in $ctrl.post.comments" comment="comment"></comment>
+    <comment-form post-id="$ctrl.post.id"></comment-form>
+</div>
+<div class="container" ng-if="!$ctrl.hasPost && !$ctrl.loading">
+    <p>A post with that title doesn't exist!</p>
+</div>
+<div class="text-center container" ng-if="$ctrl.loading">
+    <span class="fa fa-refresh fa-spin fa-4x"></span>
 </div>

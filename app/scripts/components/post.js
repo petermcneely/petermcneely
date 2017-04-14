@@ -1,7 +1,7 @@
 (function () {
     var post = {
         templateUrl: '../templates/post.html',
-        controller: ['CommentFactory', function (CommentFactory) {
+        controller: ['CommentFactory', '$scope', function (CommentFactory, $scope) {
             var self = this;
             self.commentCount = 0;
 
@@ -9,7 +9,8 @@
                 CommentFactory.getComments(self.post.id).then(
                     function (success) {
                         if (typeof success.val === "function") {
-                            self.commentCount = success.val().length;
+                            self.commentCount = Object.keys(success.val()).length;
+                            $scope.$apply();
                         }
                     },
                     function (error) {
