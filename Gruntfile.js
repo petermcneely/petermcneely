@@ -1,12 +1,25 @@
 module.exports = function (grunt) {
 
-    grunt.registerTask('default', ['clean', 'copy', 'hapi', 'watch']);
+    grunt.registerTask('production-default', ['clean', 'env:build', 'copy', 'hapi', 'watch']);
 
-    grunt.registerTask('build', ['clean', 'copy']);
+    grunt.registerTask('development-default', ['clean', 'env:dev', 'copy', 'hapi', 'watch']);
+
+    grunt.registerTask('production-build', ['clean', 'env:build', 'copy']);
+
+    grunt.registerTask('development-build', ['clean', 'env:dev', 'copy']);
 
     grunt.registerTask('run', ['hapi', 'watch']);
 
     grunt.initConfig({
+
+        env: {
+            dev: {
+                NODE_ENV: 'development'
+            },
+            build: {
+                NODE_ENV: 'production'
+            }
+        },
 
         watch: {
             hapi: {
@@ -37,7 +50,7 @@ module.exports = function (grunt) {
                     cwd: './app'
                 }, {
                     expand: true,
-                    src: ['./**/*.html'],
+                    src: ['./**/*.html', '!./**/index.html'],
                     dest: './dist',
                     cwd: './app/pages'
                 }, {
@@ -47,7 +60,7 @@ module.exports = function (grunt) {
                     cwd: './app/styles'
                 }, {
                     expand: true,
-                    src: ['./**/*.js'],
+                    src: ['./**/*.js', '!./**/firebase.*.js'],
                     dest: './dist/scripts',
                     cwd: './app/scripts'
                 }, {
@@ -56,6 +69,17 @@ module.exports = function (grunt) {
                     dest: './dist/templates',
                     cwd: './app/templates'
                 }]
+            },
+            main: {
+                expand: true,
+                src: ['index.html'],
+                dest: './dist',
+                cwd: './app/pages',
+                options: {
+                    process: function (content, srcpath) {
+                        return content.replace(/scripts\/firebase\.js/g, 'scripts/firebase.' + process.env.NODE_ENV + '.js');
+                    }
+                }
             }
         },
 
@@ -70,12 +94,13 @@ module.exports = function (grunt) {
             }
         },
 
-        clean: ['./dist']
+        clean: ['./dist'],
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-hapi');
+    grunt.loadNpmTasks('grunt-env');
 
 };
