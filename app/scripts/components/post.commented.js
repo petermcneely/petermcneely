@@ -7,6 +7,7 @@
             self.post = undefined;
             self.hasPost = true;
             self.loading = true;
+            self.showForm = true;
 
             var getPost = function () {
                 if (typeof $stateParams.title === "string") {
@@ -40,11 +41,14 @@
                     function (success) {
                         if (typeof success.val === "function") {
                             var commentsObj = success.val();
-                            self.post.comments = commentsObj ? Object.keys(commentsObj).map(function (key) {
+                            for (var key in commentsObj) {
                                 commentsObj[key].id = key;
-                                return commentsObj[key];
-                            }) : null;
+                            }
+                            self.post.comments = commentsObj;
                             $scope.$apply();
+                        }
+                        else {
+                            self.post.comments = success;
                         }
                     },
                     function (error) {

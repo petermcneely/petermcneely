@@ -1,1 +1,11 @@
-<div>{{$ctrl.comment.body}}</div>
+<script type="text/ng-template" id="comment.html">
+    <div class="container-fluid comment">
+        <p><span class="comment-author">{{comment.author.name}} ({{comment.creationDate | date : 'short'}}):</span></p>
+        <div class="comment-body">{{comment.body}}</div>
+        <comment-form parent="comment" post-id="comment.postId" show-cancel="true" ng-show="$ctrl.isReplying(comment.id)" on-cancel="$ctrl.toggleReply()"></comment-form>
+        <a class="comment-reply" ng-hide="$ctrl.isReplying(comment.id)" ng-click="$ctrl.toggleReply(comment.id)">reply.</a>
+        <div ng-repeat="comment in comment.replies" ng-include="'comment.html'"></div>
+    </div>
+</script>
+
+<div ng-repeat="comment in $ctrl.post.comments" ng-include="'comment.html'"></div>

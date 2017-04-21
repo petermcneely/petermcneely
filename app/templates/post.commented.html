@@ -1,16 +1,19 @@
-<div class="container">
-    <div ng-if="$ctrl.hasPost && !$ctrl.loading" class="post">
-        <h3 class="post-header">{{$ctrl.post.title}}</h3>
-        <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
-        <div class="post-body">
-            <div ng-bind-html="$ctrl.post.body"></div>
+<div ng-if="$ctrl.hasPost && !$ctrl.loading">
+    <div class="container">
+        <div class="post">
+            <h3 class="post-header">{{$ctrl.post.title}}</h3>
+            <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
+            <div class="post-body">
+                <div ng-bind-html="$ctrl.post.body"></div>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <!-- TODO: only load a few comments -->
-    <comment ng-repeat="comment in $ctrl.post.comments" comment="comment"></comment>
-    <comment-form post-id="$ctrl.post.id"></comment-form>
+    <div class="container">
+        <!-- TODO: only load a few comments -->
+        <h4>Comments</h4>
+        <comment post="$ctrl.post" on-commenting="$ctrl.showForm=value"></comment>
+        <comment-form ng-show="$ctrl.showForm" post-id="$ctrl.post.id"></comment-form>
+    </div>
 </div>
 <div class="container" ng-if="!$ctrl.hasPost && !$ctrl.loading">
     <p>A post with that title doesn't exist!</p>

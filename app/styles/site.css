@@ -1,5 +1,6 @@
 body {
     padding-top: 60px;
+    padding-bottom: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -73,5 +74,15 @@ body {
 
 .post .post-header a {
     text-decoration: none;
+    cursor: pointer;
+}
+
+.comment {
+    margin: 5px;
+    border-left: solid 1px rgb(180, 196, 208);
+    padding: 10px;
+}
+
+.comment-reply {
     cursor: pointer;
 }

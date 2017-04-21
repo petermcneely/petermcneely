@@ -9,7 +9,9 @@
 
             self.submit = function () {
                 self.comment.postId = self.postId;
-                self.comment.parentId = self.parentId ? self.parentId : null;
+                self.comment.parentId = self.parent ? self.parent.id : null;
+                self.comment.generation = self.parent ? self.parent.generation + 1 : 1;
+                self.comment.creationDate = Date.now();
                 CommentFactory.createComment(self.comment).then(
                     function (success) {
                         console.log("Successfully created comment.");
@@ -21,11 +23,17 @@
                     }
                 );
             };
+
+            self.cancel = function () {
+                self.onCancel();
+            };
         }],
         bindings: {
-            parentId: '<',
+            parent: '<',
             postId: '<',
-            onCreate: '&'
+            showCancel: '<',
+            onCreate: '&',
+            onCancel: '&'
         }
     };
 
