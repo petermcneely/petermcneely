@@ -2,6 +2,8 @@
     'use strict'
     function CommentFactory($q) {
 
+        
+
         var createComment = function (comment) {
             var newCommentRef = firebase.database().ref("comments").push();
             return newCommentRef.set(comment);
@@ -58,10 +60,35 @@
                             commentsObj[key].id = key;
                             return commentsObj[key];
                         }) : null;
-                        comments.sort(compare);
-                        comments = createCommentTree(comments);
-                        console.log(comments);
+                        if (comments) {
+                            comments.sort(compare);
+                            comments = createCommentTree(comments);
+                        }
                         deferred.resolve(comments);
+                    }
+                },
+                function (error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
+        };
+
+        var getCommentCount = function (id) {
+            var reference = firebase.database().ref("comments").orderByChild("postId").equalTo(id);
+            var deferred = $q.defer();
+
+            reference.once('value').then(
+                function (success) {
+                    if (typeof success.val === "function") {
+                        var commentsObj = success.val();
+                        if (commentsObj) {
+                            deferred.resolve(Object.keys(commentsObj).length);
+                        }
+                        else {
+                            deferred.resolve(0);
+                        }
                     }
                 },
                 function (error) {
@@ -74,7 +101,8 @@
 
         return {
             createComment: createComment,
-            getComments: getComments
+            getComments: getComments,
+            getCommentCount: getCommentCount
         };
     };
 

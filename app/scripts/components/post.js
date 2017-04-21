@@ -6,12 +6,9 @@
             self.commentCount = 0;
 
             var getCommentCount = function () {
-                CommentFactory.getComments(self.post.id).then(
+                CommentFactory.getCommentCount(self.post.id).then(
                     function (success) {
-                        if (typeof success.val === "function") {
-                            self.commentCount = Object.keys(success.val()).length;
-                            $scope.$apply();
-                        }
+                        self.commentCount = success;
                     },
                     function (error) {
                         console.log(error);

@@ -39,17 +39,7 @@
             var getComments = function () {
                 CommentFactory.getComments(self.post.id).then(
                     function (success) {
-                        if (typeof success.val === "function") {
-                            var commentsObj = success.val();
-                            for (var key in commentsObj) {
-                                commentsObj[key].id = key;
-                            }
-                            self.post.comments = commentsObj;
-                            $scope.$apply();
-                        }
-                        else {
-                            self.post.comments = success;
-                        }
+                        self.post.comments = success;
                     },
                     function (error) {
                         console.log(error);
