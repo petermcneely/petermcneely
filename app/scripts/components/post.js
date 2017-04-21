@@ -1,7 +1,7 @@
 (function () {
     var post = {
         templateUrl: '../templates/post.html',
-        controller: ['CommentFactory', '$scope', function (CommentFactory, $scope) {
+        controller: ['CommentFactory', '$scope', '$sce', function (CommentFactory, $scope, $sce) {
             var self = this;
             self.commentCount = 0;
 

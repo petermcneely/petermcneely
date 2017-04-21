@@ -1,10 +1,14 @@
 (function () {
     'use strict'
-    function PostFactory($q) {
+    function PostFactory($sce, $q) {
 
         var createPost = function (post) {
             var newPostRef = firebase.database().ref("posts").push();
             return newPostRef.set(post);
+        };
+
+        var trustPostBody = function (post) {
+            post.body = $sce.trustAsHtml(post.body);
         };
 
         var getPosts = function () {
@@ -17,6 +21,7 @@
                     var postsArray = postsObj ? Object.keys(postsObj).map(function (key) {
                         postsObj[key].creationTime = Date.parse(postsObj[key].creationDate);
                         postsObj[key].id = key;
+                        trustPostBody(postsObj[key]);
                         return postsObj[key];
                     }) : null;
 
@@ -30,8 +35,29 @@
         };
 
         var getPost = function (title) {
+            var deferred = $q.defer();
             var postRef = firebase.database().ref("posts").orderByChild("urlTitle").equalTo(title);
-            return postRef.once('value');
+
+            postRef.once('value').then(
+                function (success) {
+                    if (success.val() !== null) {
+                        for (var singleKey in success.val()) {
+                            var post = success.val()[singleKey];
+                            post.id = singleKey;
+                        }
+                        trustPostBody(post);
+                        deferred.resolve(post);
+                    }
+                    else {
+                        deferred.resolve(null);
+                    }
+                },
+                function (error) {
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred.promise;
         };
 
         return {
@@ -43,5 +69,5 @@
 
     angular
         .module('site')
-        .factory('PostFactory', ['$q', PostFactory]);
+        .factory('PostFactory', ['$sce', '$q', PostFactory]);
 })();

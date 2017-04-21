@@ -13,19 +13,14 @@
                 if (typeof $stateParams.title === "string") {
                     PostFactory.getPost($stateParams.title).then(
                         function (success) {
-                            if (success.val() !== null) {
-                                for (var singleKey in success.val()) {
-                                    self.post = success.val()[singleKey];
-                                    self.post.id = singleKey;
-                                    getComments();
-                                    break;
-                                }
+                            if (success !== null) {
+                                self.post = success;
+                                getComments();
                             }
                             else {
                                 self.hasPost = false;
                             }
                             self.loading = false;
-                            $scope.$apply();
                         },
                         function (error) {
                             console.log(error);
