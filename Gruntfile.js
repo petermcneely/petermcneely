@@ -42,6 +42,17 @@ module.exports = function (grunt) {
         },
 
         copy: {
+            main: {
+                expand: true,
+                    src: ['index.html'],
+                        dest: './dist',
+                            cwd: './app/pages',
+                        options: {
+                    process: function (content, srcpath) {
+                        return content.replace(/scripts\/firebase\.js/g, 'scripts/firebase.' + process.env.NODE_ENV + '.js');
+                    }
+                }
+            },
             dist: {
                 files: [{
                     expand: true,
@@ -60,7 +71,7 @@ module.exports = function (grunt) {
                     cwd: './app/styles'
                 }, {
                     expand: true,
-                    src: ['./**/*.js', '!./**/firebase.*.js'],
+                    src: ['./**/*.js'],
                     dest: './dist/scripts',
                     cwd: './app/scripts'
                 }, {
@@ -70,17 +81,7 @@ module.exports = function (grunt) {
                     cwd: './app/templates'
                 }]
             },
-            main: {
-                expand: true,
-                src: ['index.html'],
-                dest: './dist',
-                cwd: './app/pages',
-                options: {
-                    process: function (content, srcpath) {
-                        return content.replace(/scripts\/firebase\.js/g, 'scripts/firebase.' + process.env.NODE_ENV + '.js');
-                    }
-                }
-            }
+            
         },
 
         hapi: {
