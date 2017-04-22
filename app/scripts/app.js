@@ -31,6 +31,10 @@
             .state('commentedPost', {
                 url: '/post/{title}',
                 template: '<commented-post></commented-post>'
+            })
+            .state('signIn', {
+                url: '/sign-in',
+                template: '<sign-in></sign-in>'
             });
     };
 

@@ -5,7 +5,7 @@
         bindings: {
             modalInstance: '<'
         },
-        controller: function () {
+        controller: ['$state', function ($state) {
             var self = this;
             self.email = undefined;
             self.password = undefined;
@@ -13,7 +13,12 @@
             self.signIn = function () {
                 firebase.auth().signInWithEmailAndPassword(self.email, self.password).then(
                     function (success) {
-                        self.modalInstance.close("Sign in successful!");
+                        if (self.modalInstance) {
+                            self.modalInstance.close("Sign in successful!");
+                        }
+                        else {
+                            $state.go('blog');
+                        }
                     },
                     function (error) {
                         if (error.code === 'auth/wrong-password')
@@ -27,9 +32,14 @@
             };
 
             self.cancel = function () {
-                self.modalInstance.dismiss('User canceled post attempt.');
+                if (self.modalInstance) {
+                    self.modalInstance.dismiss('User canceled post attempt.');
+                }
+                else {
+                    $state.go('blog');
+                }
             };
-        }
+        }]
     };
 
     angular
