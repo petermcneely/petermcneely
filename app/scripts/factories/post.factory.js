@@ -7,8 +7,31 @@
             return newPostRef.set(post);
         };
 
-        var trustPostBody = function (post) {
-            post.body = $sce.trustAsHtml(post.body);
+        var updatePost = function (post) {
+            var databaseRef = firebase.database().ref();
+
+            var postId = post.id;
+            manipulateForDatabase(post);
+            var updates = {};
+            updates['/posts/' + postId] = post;
+
+            return databaseRef.update(updates);
+        };
+
+        var deletePost = function (postId) {
+            return firebase.database().ref("/posts/" + postId).remove();
+        };
+
+        var manipulateFromDatabase = function (post, key) {
+            post.creationTime = Date.parse(post.creationDate);
+            post.id = key;
+            post.trustedBody = $sce.trustAsHtml(post.body);
+        };
+
+        var manipulateForDatabase = function (post) {
+            delete post.id;
+            delete post.creationTime;
+            delete post.trustedBody;
         };
 
         var getPosts = function () {
@@ -19,9 +42,7 @@
                 function (posts) {
                     var postsObj = posts.val();
                     var postsArray = postsObj ? Object.keys(postsObj).map(function (key) {
-                        postsObj[key].creationTime = Date.parse(postsObj[key].creationDate);
-                        postsObj[key].id = key;
-                        trustPostBody(postsObj[key]);
+                        manipulateFromDatabase(postsObj[key], key);
                         return postsObj[key];
                     }) : null;
 
@@ -43,10 +64,10 @@
                     if (success.val() !== null) {
                         for (var singleKey in success.val()) {
                             var post = success.val()[singleKey];
-                            post.id = singleKey;
+                            manipulateFromDatabase(post, singleKey);
+                            deferred.resolve(post);
+                            break;
                         }
-                        trustPostBody(post);
-                        deferred.resolve(post);
                     }
                     else {
                         deferred.resolve(null);
@@ -63,7 +84,9 @@
         return {
             createPost: createPost,
             getPosts: getPosts,
-            getPost: getPost
+            getPost: getPost,
+            updatePost: updatePost,
+            deletePost: deletePost
         };
     };
 

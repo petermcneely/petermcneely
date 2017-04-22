@@ -1,10 +1,16 @@
 <div ng-if="$ctrl.hasPost && !$ctrl.loading">
     <div class="container">
         <div class="post">
-            <h3 class="post-header">{{$ctrl.post.title}}</h3>
+            <h3 class="post-header">
+                {{$ctrl.post.title}}
+                <div ng-show="$ctrl.adminAuth()" class="pull-right">
+                    <a class="btn btn-info" ui-sref="post({post: {{$ctrl.post}}})">Edit Post</a>
+                    <button class="btn btn-danger" ng-click="$ctrl.deletePost()" type="button">Delete Post</button>
+                </div>
+            </h3>
             <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
             <div class="post-body">
-                <div ng-bind-html="$ctrl.post.body"></div>
+                <div ng-bind-html="$ctrl.post.trustedBody"></div>
             </div>
         </div>
     </div>

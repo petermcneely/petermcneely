@@ -2,7 +2,7 @@
     'use strict'
     var commentedPost = {
         templateUrl: '../templates/post.commented.html',
-        controller: ['CommentFactory', 'PostFactory', '$stateParams', '$scope', function (CommentFactory, PostFactory, $stateParams, $scope) {
+        controller: ['CommentFactory', 'PostFactory', '$stateParams', '$scope', '$state', function (CommentFactory, PostFactory, $stateParams, $scope, $state) {
             var self = this;
             self.post = undefined;
             self.hasPost = true;
@@ -41,7 +41,22 @@
                     }
                 );
             };
-            
+
+            self.adminAuth = function () {
+                return firebase.auth().currentUser !== null;
+            };
+
+            self.deletePost = function () {
+                PostFactory.deletePost(self.post.id).then(
+                    function (success) {
+                        console.log("Post successfully deleted.");
+                        $state.go('blog');
+                    },
+                    function (error) {
+                        console.log(error);
+                    }
+                );
+            };
 
             self.$onInit = function () {
                 getPost();

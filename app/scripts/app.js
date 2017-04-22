@@ -25,6 +25,7 @@
             })
             .state('post', {
                 url: '/post',
+                params: { post: null },
                 template: '<post-form></post-form>'
             })
             .state('commentedPost', {

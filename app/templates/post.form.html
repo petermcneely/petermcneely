@@ -12,6 +12,9 @@
             <label>Body</label>
             <textarea rows="8" class="form-control" required ng-model="$ctrl.post.body"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success">
+            <span ng-show="$ctrl.editing">Update</span>
+            <span ng-hide="$ctrl.editing">Submit</span>
+        </button>
     </form>
 </div>
