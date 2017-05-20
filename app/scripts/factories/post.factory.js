@@ -10,10 +10,11 @@
         var updatePost = function (post) {
             var databaseRef = firebase.database().ref();
 
+            var postForDb = angular.copy(post);
             var postId = post.id;
-            manipulateForDatabase(post);
+            manipulateForDatabase(postForDb);
             var updates = {};
-            updates['/posts/' + postId] = post;
+            updates['/posts/' + postId] = postForDb;
 
             return databaseRef.update(updates);
         };
