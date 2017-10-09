@@ -68,13 +68,16 @@ body {
     transform: rotate(0deg);
 }
 
+.post-header {
+    cursor: pointer;
+}
+
 .post-body {
     margin: 10px;
 }
 
 .post .post-header a {
     text-decoration: none;
-    cursor: pointer;
 }
 
 .comment {

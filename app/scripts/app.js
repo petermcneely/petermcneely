@@ -1,5 +1,5 @@
 (function () {
-    'use strict'
+    'use strict';
     function config($stateProvider, $locationProvider, $urlRouterProvider) {
         $locationProvider
             .html5Mode({
@@ -23,20 +23,20 @@
                 url: '/resume',
                 template: '<resume></resume>'
             })
-            .state('post', {
+            .state('postForm', {
                 url: '/post',
                 params: { post: null },
                 template: '<post-form></post-form>'
             })
-            .state('commentedPost', {
+            .state('post', {
                 url: '/post/{title}',
-                template: '<commented-post></commented-post>'
+                template: '<post></post>'
             })
             .state('signIn', {
                 url: '/sign-in',
                 template: '<sign-in></sign-in>'
             });
-    };
+    }
 
     angular
         .module('site', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'firebase', 'ngSanitize'])

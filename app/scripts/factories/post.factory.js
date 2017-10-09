@@ -1,11 +1,27 @@
 (function () {
-    'use strict'
+    'use strict';
     function PostFactory($sce, $q) {
 
         var createPost = function (post) {
             var newPostRef = firebase.database().ref("posts").push();
             return newPostRef.set(post);
         };
+
+        var publishPost = function (post) {
+            var deferred = $q.defer();
+            post.draft = false;
+            updatePost(post).then(
+                function (success) {
+                    deferred.resolve(success);
+                },
+                function (error) {
+                    post.draft = true;
+                    deferred.reject(error);
+                }
+            );
+
+            return deferred;
+        }
 
         var updatePost = function (post) {
             var databaseRef = firebase.database().ref();
@@ -87,9 +103,10 @@
             getPosts: getPosts,
             getPost: getPost,
             updatePost: updatePost,
-            deletePost: deletePost
+            deletePost: deletePost,
+            publishPost: publishPost
         };
-    };
+    }
 
     angular
         .module('site')

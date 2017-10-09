@@ -6,13 +6,19 @@
             var self = this;
             self.editing = false;
 
+            var emptyPost = function () {
+                return {
+                    draft: true
+                };
+            }
+
             var configurePageTheme = function () {
                 if ($stateParams.post) {
                     self.post = $stateParams.post;
                     self.editing = true;
                 }
                 else {
-                    self.post = {};
+                    self.post = emptyPost();
                 }   
             };
 
@@ -22,7 +28,7 @@
                 PostFactory.createPost(self.post).then(
                     function (success) {
                         console.log("Post successfully created.");
-                        self.post = {};
+                        self.post = emptyPost();
                         $scope.$apply();
                     },
                     function (error) {

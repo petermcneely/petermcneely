@@ -1,7 +1,34 @@
-<div class="post clearfix">
-    <h3 class="post-header"><a ui-sref="commentedPost({title: '{{$ctrl.post.urlTitle}}'})">{{$ctrl.post.title}}&nbsp;<span class="badge">{{$ctrl.commentCount}}</span></a><span ng-click="$ctrl.showBody=!$ctrl.showBody" ng-animate="{enter: 'rotate', leave: 'rotate-back'}" ng-class="{true:'rotate', false:'rotate-back'}[$ctrl.showBody]" class="pull-right fa fa-chevron-right"></span></h3>
-    <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
-    <div ng-show="$ctrl.showBody" class="post-body">
-        <div ng-bind-html="$ctrl.post.body"></div>
+<div ng-if="!$ctrl.loading">
+    <div ng-if="$ctrl.hasPost">
+        <div ng-if="($ctrl.post.draft && $ctrl.adminAuth()) || !$ctrl.post.draft">
+            <div class="container">
+                <div class="post">
+                    <h3 class="post-header">
+                        {{$ctrl.post.title}}
+                        <span ng-show="$ctrl.adminAuth()" class="pull-right">
+                            <button ng-show="$ctrl.post.draft" class="btn btn-success" ng-click="$ctrl.publishPost()">Publish</button>
+                            <a class="btn btn-info" ui-sref="postForm({post: {{$ctrl.post}}})">Edit Post</a>
+                            <button class="btn btn-danger" ng-click="$ctrl.deletePost()" type="button">Delete Post</button>
+                        </span>
+                    </h3>
+                    <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
+                    <div class="post-body">
+                        <div ng-bind-html="$ctrl.post.trustedBody"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <!-- TODO: only load a few comments -->
+                <h4>Comments</h4>
+                <comment post="$ctrl.post" on-commenting="$ctrl.showForm=value"></comment>
+                <comment-form ng-show="$ctrl.showForm" post-id="$ctrl.post.id"></comment-form>
+            </div>
+        </div>
     </div>
+    <div class="container" ng-if="!$ctrl.hasPost || ($ctrl.post.draft && !$ctrl.adminAuth())">
+        <p>A post with that title doesn't exist!</p>
+    </div>
+</div>
+<div class="text-center container" ng-if="$ctrl.loading">
+    <span class="fa fa-refresh fa-spin fa-4x"></span>
 </div>

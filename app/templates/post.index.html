@@ -1,0 +1,12 @@
+<div ng-if="$ctrl.shouldShow()" class="post clearfix">
+    <h3 class="post-header" ng-click="$ctrl.showBody=!$ctrl.showBody">
+        <a ui-sref="post({title: '{{$ctrl.post.urlTitle}}'})"> 
+            {{$ctrl.post.title}}&nbsp;<span class="badge">{{$ctrl.commentCount}}</span>
+        </a>
+        <span ng-animate="{enter: 'rotate', leave: 'rotate-back'}" ng-class="{true:'rotate', false:'rotate-back'}[$ctrl.showBody]" class="pull-right fa fa-chevron-right"></span>
+    </h3>
+    <em>{{$ctrl.post.description}}</em><span class="pull-right">{{$ctrl.post.creationDate}}</span>
+    <div ng-show="$ctrl.showBody" class="post-body">
+        <div ng-bind-html="$ctrl.post.body"></div>
+    </div>
+</div>
