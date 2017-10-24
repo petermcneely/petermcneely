@@ -2,8 +2,11 @@
     'use strict'
     var about = {
         templateUrl: '../templates/about.html',
-        controller: function () {
+        controller: ['MetaService', function (MetaService) {
             var self = this;
+
+            MetaService.setTitle("About");
+            MetaService.setDescription("About Peter McNeely");
 
             self.favorite = {
                 language: "C#",
@@ -16,7 +19,7 @@
                 site: "https://www.miacanalytics.com",
                 name: "MIAC Analytics"
             };
-        }
+        }]
     };
 
     angular

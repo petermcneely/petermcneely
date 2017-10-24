@@ -2,10 +2,10 @@
     'use strict'
     var postForm = {
         templateUrl: '../templates/post.form.html',
-        controller: ['PostFactory', '$uibModal', '$filter', '$stateParams', '$scope', function (PostFactory, $uibModal, $filter, $stateParams, $scope) {
+        controller: ['PostFactory', '$uibModal', '$filter', '$stateParams', '$scope', 'MetaService', function (PostFactory, $uibModal, $filter, $stateParams, $scope, MetaService) {
             var self = this;
             self.editing = false;
-
+            
             var emptyPost = function () {
                 return {
                     draft: true
@@ -16,9 +16,13 @@
                 if ($stateParams.post) {
                     self.post = $stateParams.post;
                     self.editing = true;
+                    MetaService.setTitle("Edit Post");
+                    MetaService.setDescription("Post Editing Page");
                 }
                 else {
                     self.post = emptyPost();
+                    MetaService.setTitle("Create Post");
+                    MetaService.setDescription("Post Creating Page");
                 }   
             };
 
