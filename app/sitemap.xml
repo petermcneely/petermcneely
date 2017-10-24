@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+  <url>
+    <loc>https://petermcneely.com/</loc>
+    <lastmod>2017-10-24T03:50:50+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://petermcneely.com/post/dear-tanner-martin</loc>
+    <lastmod>2017-04-11T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://petermcneely.com/post/patience-in-pine</loc>
+    <lastmod>2017-05-20T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://petermcneely.com/post/caught-on-crosswords</loc>
+    <lastmod>2017-09-10T12:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
