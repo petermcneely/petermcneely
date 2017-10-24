@@ -2,7 +2,7 @@
     'use strict';
     var post = {
         templateUrl: '../templates/post.html',
-        controller: ['CommentFactory', 'PostFactory', '$stateParams', '$scope', '$state', function (CommentFactory, PostFactory, $stateParams, $scope, $state) {
+        controller: ['CommentFactory', 'PostFactory', '$stateParams', '$scope', '$state', 'MetaService', function (CommentFactory, PostFactory, $stateParams, $scope, $state, MetaService) {
             var self = this;
             self.post = undefined;
             self.hasPost = true;
@@ -15,6 +15,8 @@
                         function (success) {
                             if (success !== null) {
                                 self.post = success;
+                                MetaService.setTitle(self.post.title);
+                                MetaService.setDescription(self.post.description);
                                 getComments();
                             }
                             else {
