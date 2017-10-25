@@ -12,115 +12,10 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
 </head>
 <body ng-controller="siteCtrl as vm">
-    <!--<script type="text/javascript">
-        function handleClientLoad() {
-            // Loads the client library and the auth2 library together for efficiency.
-            // Loading the auth2 library is optional here since `gapi.client.init` function will load
-            // it if not already loaded. Loading it upfront can save one network request.
-            gapi.load('client:auth2', initClient);
-        }
-
-        function initClient() {
-            // Initialize the client with API key and People API, and initialize OAuth with an
-            // OAuth 2.0 client ID and scopes (space delimited string) to request access.
-            gapi.client.init({
-                clientId: '672771660775-p4sc645s0769u530ia62lepao7ju32js.apps.googleusercontent.com',
-                scope: 'https://www.googleapis.com/auth/webmasters'
-            }).then(function () {
-                // Listen for sign-in state changes.
-                gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-                // Handle the initial sign-in state.
-                updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            });
-        }
-
-        function updateSigninStatus(isSignedIn) {
-            // When signin status changes, this function is called.
-            // If the signin status is changed to signedIn, we make an API call.
-            if (isSignedIn) {
-                makeApiCall();
-            }
-        }
-
-        function handleSignInClick(event) {
-            // Ideally the button should only show up after gapi.client.init finishes, so that this
-            // handler won't be called before OAuth is initialized.
-            gapi.auth2.getAuthInstance().signIn();
-        }
-
-        function handleSignOutClick(event) {
-            gapi.auth2.getAuthInstance().signOut();
-        }
-
-        function makeApiCall() {
-            // Make an API call to the People API, and print the user's given name.
-            gapi.client.request({
-                'path': 'https://www.googleapis.com/webmasters/v3/sites/https%3A%2F%2Fpetermcneely.com/sitemaps'
-            }).then(
-                function (response) {
-                    console.log(response);
-                },
-                function (error) {
-                    console.log(error);
-                }
-            );
-        }
-    </script>
-    -->
-
-
-
-
     <nav-bar></nav-bar>
 
-    <script>
-  function authenticate() {
-    return gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://www.googleapis.com/auth/webmasters https://www.googleapis.com/auth/webmasters.readonly"})
-        .then(function() {
-          console.log("Sign-in successful");
-        }, function(error) {
-          console.error("Error signing in", error);
-        });
-  }
-  function loadClient() {
-    return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/webmasters/v3/rest")
-        .then(function() {
-          console.log("GAPI client loaded for API");
-        }, function(error) {
-          console.error("Error loading GAPI client for API");
-        });
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
-    return gapi.client.webmasters.sitemaps.list({})
-        .then(function(response) {
-          // Handle the results here (response.result has the parsed body).
-          console.log("Response", response);
-        }, function(error) {
-          console.error("Execute error", error);
-        });
+    <button ng-click="searchContentFactory.sitemaps()">execute</button>
 
-        }
-
-        function handleClientLoad() {
-            gapi.load("client:auth2", function () {
-                gapi.auth2.init({
-                    client_id: '672771660775-p4sc645s0769u530ia62lepao7ju32js.apps.googleusercontent.com' });
-            });
-        }
-    </script>
-    <script async defer src="https://apis.google.com/js/api.js"
-            onload="this.onload=function(){};handleClientLoad()"
-            onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-
-    <button onclick="authenticate().then(loadClient)">authorize and load</button>
-    <button onclick="execute()">execute</button>
-
-    <!--<button id="signin-button" onclick="handleSignInClick()">Sign In</button>
-    <button id="signout-button" onclick="handleSignOutClick()">Sign Out</button>-->
     
     <ui-view></ui-view>
 
@@ -146,6 +41,7 @@
     <script src="../scripts/components/comment.form.js"></script>
     <script src="../scripts/factories/post.factory.js"></script>
     <script src="../scripts/factories/comment.factory.js"></script>
+    <script src="../scripts/factories/searchContent.factory.js"></script>
     <script src="../scripts/filters/hyphenate.js"></script>
     <script src="../scripts/services/metaService.js"></script>
     <script src="../scripts/controllers/site.controller.js"></script>
