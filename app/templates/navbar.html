@@ -10,9 +10,9 @@
         </div>
         <div class="navbar-collapse collapse" ng-class="{'in':$ctrl.switch}">
             <ul class="nav navbar-nav">
-                <li><a ng-click="$ctrl.switch=false" ui-sref="blog">Blog</a></li>
-                <li><a ng-click="$ctrl.switch=false" ui-sref="about">About</a></li>
-                <li><a ng-click="$ctrl.switch=false" ui-sref="resume">Resume</a></li>
+                <li ui-sref-active="active"><a ng-click="$ctrl.switch=false" ui-sref="blog">Blog</a></li>
+                <li ui-sref-active="active"><a ng-click="$ctrl.switch=false" ui-sref="about">About</a></li>
+                <li ui-sref-active="active"><a ng-click="$ctrl.switch=false" ui-sref="resume">Resume</a></li>
             </ul>
         </div>
     </div>

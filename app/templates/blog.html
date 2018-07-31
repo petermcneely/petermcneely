@@ -1,5 +1,4 @@
 <div class="container">
-    <h2>blog.</h2>
     <div ng-if="!$ctrl.loading" class="container-fluid">
         <post-index ng-repeat="post in $ctrl.posts | orderBy: '-creationTime'" post="post" show-body="$index === 0"></post-index>
     </div>
