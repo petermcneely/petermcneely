@@ -21,6 +21,10 @@
             },
             setTitle: function (data) {
                 title = data;
+            },
+            reset: function () {
+                title = "Peter McNeely's Website";
+                description = "Peter McNeely's Website";
             }
         };
     }

@@ -2,9 +2,12 @@
     'use strict'
     var resume = {
         templateUrl: '../templates/resume.html',
-        controller: function () {
+        controller: ['MetaService', function (MetaService) {
             var self = this;
-        }
+
+            MetaService.setTitle("Resume");
+            MetaService.setDescription("Peter McNeely's Resume");
+        }]
     };
 
     angular
