@@ -1,10 +1,13 @@
+html, body {
+    height: 100%;
+}
+
 body {
     padding-top: 60px;
-    padding-bottom: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#profile {
+#picture {
     height: 150px;
     width: calc(150px * .75);
     margin-bottom: 20px;
@@ -12,6 +15,13 @@ body {
 
 #resume {
     min-width: 570px;
+    height: 100%;
+}
+
+#resumePDF {
+    height: calc(100% - 50px);
+    width: 100%;
+    border: none;
 }
 
 .navbar-default .navbar-toggle:hover,
